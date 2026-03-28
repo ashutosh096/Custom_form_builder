@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="builder-area">
+        <form id="active-form" style="background: white; padding: 30px; border-radius: 8px;">
+            <h1>Submit Details</h1>
+            {% for field in schema %}
+            <div style="margin-bottom: 15px;">
+                <label style="display:block;">{{ field.label }}</label>
+                <input type="{{ field.type }}" style="width:100%; padding: 8px;">
+            </div>
+            {% endfor %}
+            <button type="submit" style="background: #2980b9; color: white; padding: 10px 20px; border: none; border-radius: 4px;">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

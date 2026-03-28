@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FormBot | Stylish Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="builder-layout">
+    <nav class="side-nav">
+        <div class="logo">Builder</div>
+        <div class="nav-section">
+            <div class="nav-section-title">Add Elements</div>
+            <button class="tool-btn" onclick="addField('text')"><i class="fas fa-font"></i> Text Input</button>
+            <button class="tool-btn" onclick="addField('email')"><i class="fas fa-at"></i> Email</button>
+            <button class="tool-btn" onclick="addField('number')"><i class="fas fa-calculator"></i> Number</button>
+            <button class="tool-btn" onclick="addField('date')"><i class="fas fa-calendar"></i> Date Picker</button>
+        </div>
+        <a href="/" class="exit-link"><i class="fas fa-times"></i> Exit Builder</a>
+    </nav>
+
+    <div class="wrapper">
+        <header class="glass-header">
+            <h2 id="preview-name">New Form</h2>
+            <button class="btn-primary-teal" onclick="saveForm()"><i class="fas fa-check"></i> Publish Form</button>
+        </header>
+        <main class="content-padding">
+            <div class="canvas">
+                <div id="fields-container">
+                    <p class="empty-msg">Select an element to start building</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <aside class="property-panel">
+        <div class="panel-tab">Configuration</div>
+        <div class="panel-content">
+            <div class="input-group">
+                <label>Form Name</label>
+                <input type="text" id="form-name-input" placeholder="Give your form a name..." oninput="syncName()">
+            </div>
+            <div class="input-group">
+                <label>Form Description</label>
+                <textarea id="form-desc-input" rows="3" placeholder="Tell users what this form is for..."></textarea>
+            </div>
+            
+            <div id="field-editor" class="editor-box" style="display:none;">
+                <h4>Edit Selected Field</h4>
+                <label>Label Text</label>
+                <input type="text" id="edit-label" oninput="applyEdit()">
+                <button class="btn-danger-link" onclick="deleteField()"><i class="fas fa-trash-alt"></i> Remove</button>
+            </div>
+        </div>
+    </aside>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

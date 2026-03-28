@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | FormBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="side-nav">
+        <div class="logo"><i class="fas fa-layer-group"></i> FormBot</div>
+        
+        <div class="nav-label">WORKSPACE</div>
+        <a href="/" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="/builder"><i class="fas fa-plus-square"></i> Create New</a>
+        <a href="#"><i class="fas fa-folder"></i> My Projects</a>
+
+        <div class="nav-label">COLLABORATION</div>
+        <a href="#"><i class="fas fa-users"></i> Team Space</a>
+
+        <div class="profile-footer">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="avatar-box">A</div>
+                <div>
+                    <div style="font-size: 14px; font-weight: bold;">Admin User</div>
+                    <div style="font-size: 11px; color: #718096;">Pro Account</div>
+                </div>
+            </div>
+            <a href="#" class="exit-btn"><i class="fas fa-sign-out-alt"></i> Exit App</a>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <div class="dashboard-box">
+            
+            <header class="box-header">
+                <div>
+                    <h2 style="margin:0; color:#004d4d;">Welcome Back! 👋</h2>
+                    <p style="margin:5px 0 0 0; color:#718096;">You have {{ forms|length }} active forms running.</p>
+                </div>
+                
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div style="position:relative;">
+                        <i class="fas fa-search" style="position:absolute; left:12px; top:12px; color:#cbd5e1;"></i>
+                        <input type="text" placeholder="Search forms..." style="padding:10px 10px 10px 35px; border-radius:8px; border:1px solid #e2e8f0; width:200px; outline:none;">
+                    </div>
+                    <a href="/builder" class="btn-new">+ New Form</a>
+                </div>
+            </header>
+
+            <div class="box-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>{{ forms|length }}</h3>
+                        <p>TOTAL FORMS</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color:#10b981;">Active</h3>
+                        <p>SYSTEM STATUS</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pro</h3>
+                        <p>PLAN LEVEL</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom:20px; color:#1e293b;">Recent Projects</h3>
+                <table class="project-table">
+                    <thead>
+                        <tr>
+                            <th>FORM NAME</th>
+                            <th>CREATED DATE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if forms %}
+                            {% for id, details in forms.items() %}
+                            <tr>
+                                <td><strong>{{ details.name }}</strong></td>
+                                <td style="color:#64748b;">{{ details.created_at }}</td>
+                                <td>
+                                    <a href="/view/{{ id }}" class="action-btn">View</a>
+                                    <button onclick="deleteForm('{{ id }}')" class="delete-btn">Delete</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3" style="text-align:center; padding:60px; color:#94a3b8;">
+                                    <i class="fas fa-folder-open" style="font-size:40px; margin-bottom:10px; display:block;"></i>
+                                    No projects found. Create your first form!
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function deleteForm(id) {
+            if(confirm("Are you sure you want to delete this form?")) {
+                const res = await fetch('/delete/' + id, { method: 'DELETE' });
+                if(res.ok) {
+                    location.reload();
+                } else {
+                    alert("Error deleting form.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
