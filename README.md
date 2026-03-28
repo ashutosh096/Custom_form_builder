@@ -14,6 +14,8 @@ FormBot is a professional-grade web application that allows users to build, mana
 * **Frontend:** HTML5, CSS3 (Flexbox & Grid), JavaScript (ES6+)
 * **Icons:** FontAwesome 6.0
 * **Data:** JSON (NoSQL-style flat file storage)
+*
+* ![image alt](https://github.com/ashutosh096/Custom_form_builder/blob/b7e344a9d552375e33bbad978243b9a5145fc9ef/Screenshot%202026-03-28%20164609.png)
 
 ## 📁 Project Structure
 ```text
@@ -29,4 +31,5 @@ CUSTOM FORM BUILDER/
     ├── dashboard.html    # The "Boxed" Main Hub
     ├── index.html        # Form Builder Interface
     └── fill_form.html    # End-user Form View
-![image alt](https://github.com/ashutosh096/Custom_form_builder/blob/b7e344a9d552375e33bbad978243b9a5145fc9ef/Screenshot%202026-03-28%20164609.png)
+
+
