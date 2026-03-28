@@ -29,4 +29,4 @@ CUSTOM FORM BUILDER/
     ├── dashboard.html    # The "Boxed" Main Hub
     ├── index.html        # Form Builder Interface
     └── fill_form.html    # End-user Form View
-![image alt](https://github.com/ashutosh096/Custom_form_builder/blob/64e407802fd56beb5eca44743d824d68a13ac5df/Screenshot%202026-03-28%20164609.png)
+![image alt](https://github.com/ashutosh096/Custom_form_builder/blob/b7e344a9d552375e33bbad978243b9a5145fc9ef/Screenshot%202026-03-28%20164609.png)
